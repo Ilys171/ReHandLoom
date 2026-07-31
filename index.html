@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReHand Loom</title>
+<meta name="description" content="ReHand Loom is a wearable sensor glove and app that monitors occupational hand strain in Azerbaijani carpet weavers and supports remote, home-based rehabilitation.">
+<link rel="icon" type="image/png" href="images/buta-nobg.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;0,900;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.5 4 5.5v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10v-6L12 2.5Z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/><path d="m8.5 12 2.4 2.4L15.5 9" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V11M11 11V4a1.5 1.5 0 0 1 3 0v7M14 11.2V5.5a1.5 1.5 0 0 1 3 0V13M17 8.5a1.5 1.5 0 0 1 3 0V15c0 4-2.7 7-7 7-3 0-4.3-.9-5.7-2.7L4.8 15.6c-.7-.9-.5-2 .4-2.6.8-.5 1.8-.4 2.5.3L9 15" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-cpu" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M18 6l-2 2M6 18l2-2M18 18l-2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+<symbol id="i-bluetooth" viewBox="0 0 24 24"><path d="M7 7.5 17 16l-5 4V4l5 4L7 16.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4M4 20h16" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><rect x="7" y="13" width="2.6" height="7" fill="currentColor"/><rect x="12" y="9" width="2.6" height="11" fill="currentColor"/><rect x="17" y="6" width="2.6" height="14" fill="currentColor"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 13l4.5 4.5L19 7" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="m3.5 6 8.5 7 8.5-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M3 20c0-3.2 2.7-5.5 6-5.5s6 2.3 6 5.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M15.5 6a3 3 0 0 1 0 6M18 20c0-2.6-1.4-4.6-3.4-5.4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.5" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="m8.5 13.5-1.8 6.5 5.3-2.5 5.3 2.5-1.8-6.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/><path d="M14 3v4h4M9 12h6M9 15.5h6M9 8.5h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" stroke="currentColor" stroke-width="1.5" fill="none"/></symbol>
+<symbol id="i-battery" viewBox="0 0 24 24"><rect x="2.5" y="8" width="17" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M21.5 10.5v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+<symbol id="i-app" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10.5 18.5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="1.5" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.5" fill="none"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-9.3-8.8C1.3 8 3 5 6.3 5c2 0 3.4 1.2 5.7 3.5C14.3 6.2 15.7 5 17.7 5 21 5 22.7 8 21.3 11.2 19 15.6 12 20 12 20Z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 5v14l12-7L7 5Z" fill="currentColor"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h13l-3 4 3 4H5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/></symbol>
+<symbol id="i-buta" viewBox="0 0 100 140"><path d="M88.85 81.70C73.83 63.84 40.81 33.13 22.81 20.29A5 6.25 0 1 0 13.19 23.71C24.48 40.69 31.66 72.13 31.15 102.30A30 37.50 0 1 0 88.85 81.70Z" fill="currentColor"/></symbol>
+<symbol id="i-star8" viewBox="0 0 100 100"><polygon points="100,50 68.48,57.65 85.36,85.36 57.65,68.48 50,100 42.35,68.48 14.65,85.36 31.52,57.65 0,50 31.52,42.35 14.65,14.65 42.35,31.52 50,0 57.65,31.52 85.36,14.65 68.48,42.35" fill="currentColor"/></symbol>
+<symbol id="i-ministry" viewBox="0 0 100 100">
+  <path d="M 50 10 C 28 13 12 30 16 50 C 18 62 34 68 48 57" fill="none" stroke="currentColor" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g stroke="currentColor" stroke-width="3" stroke-linecap="round">
+    <line x1="38" y1="8" x2="36" y2="15"/>
+    <line x1="27" y1="12" x2="24" y2="18"/>
+    <line x1="18" y1="20" x2="14" y2="25"/>
+    <line x1="12" y1="32" x2="7" y2="35"/>
+    <line x1="10" y1="45" x2="4" y2="46"/>
+  </g>
+  <path d="M 50 90 C 72 87 88 70 84 50 C 82 38 66 32 52 43" fill="none" stroke="currentColor" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+</defs>
+</svg>
+
+<!-- Nav -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="wordmark"><span class="motif-star" aria-hidden="true"></span>ReHand <span>Loom</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#impact">Impact</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#technology">Technology</a>
+      <a href="#team">Team</a>
+      <a href="#recognition">Recognition</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="mailto:yousefelharoun512@gmail.com?subject=ReHand%20Loom%20inquiry" class="btn btn-primary btn-sm">Get in Touch</a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#impact">Impact</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#technology">Technology</a>
+    <a href="#team">Team</a>
+    <a href="#recognition">Recognition</a>
+    <a href="mailto:yousefelharoun512@gmail.com?subject=ReHand%20Loom%20inquiry" class="btn btn-primary btn-sm">Get in Touch</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-contours" aria-hidden="true"></div>
+  <img class="buta-art" src="images/buta-maroon.webp" alt="" width="300" style="top:-60px; left:-70px; opacity:0.16; transform:rotate(-8deg);" aria-hidden="true">
+  <img class="buta-art" src="images/buta-gold.webp" alt="" width="220" style="bottom:-70px; right:4%; opacity:0.15; transform:rotate(165deg);" aria-hidden="true">
+  <div class="wrap hero-inner">
+    <div class="hero-copy reveal">
+      <p class="eyebrow"><span class="badge">Engineering Prototype</span></p>
+      <h1>Protecting the hands that keep the loom alive.</h1>
+      <p class="lede">ReHand Loom is a wearable hand-and-wrist rehabilitation system for rural Azerbaijani carpet weavers. Years of repetitive knotting, cutting and sustained wrist positioning can turn minor numbness and tired hands into lasting loss of grip and fine motor control — often far from specialist care. ReHand Loom brings monitoring and guided home rehabilitation to the weaver's own house.</p>
+      <div class="hero-ctas">
+        <a href="#how-it-works" class="btn btn-primary">See How It Works</a>
+        <a href="#recognition" class="btn btn-outline">Ministry Recognition</a>
+      </div>
+      <p class="honesty-line"><svg class="icon" width="16" height="16"><use href="#i-shield"/></svg> Monitoring &amp; rehabilitation support — not a medical diagnosis device.</p>
+    </div>
+    <div class="hero-visual reveal motif-corners" aria-hidden="false">
+      <div class="hero-base" aria-hidden="true"></div>
+      <figure class="photo-card" style="aspect-ratio:4/5;">
+        <img src="images/carpet-weaver.jpeg" alt="The ReHand Loom team fitting the sensor glove on a carpet weaver at the loom in the Azerbaijan Carpet Museum">
+      </figure>
+      <div class="float-card fc-1" aria-hidden="true"><span class="fc-label">WEAVERS REACHED</span><span class="fc-value">200+</span></div>
+      <div class="float-card fc-2" aria-hidden="true"><span class="fc-label">REGIONS</span><span class="fc-value">5</span></div>
+      <div class="float-card fc-3" aria-hidden="true"><span class="fc-label">SESSION REPORT</span><span class="fc-value">Ready</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="carpet-divider" aria-hidden="true">
+  <div class="motif-band"></div>
+  <div class="buta-divider">
+    <svg class="icon"><use href="#i-buta"/></svg><svg class="icon icon-star"><use href="#i-star8"/></svg><svg class="icon"><use href="#i-buta"/></svg><svg class="icon icon-star"><use href="#i-star8"/></svg><svg class="icon"><use href="#i-buta"/></svg><svg class="icon icon-star"><use href="#i-star8"/></svg><svg class="icon"><use href="#i-buta"/></svg>
+  </div>
+  <div class="motif-band"></div>
+</div>
+
+<!-- Trust / impact strip -->
+<section class="trust-strip reveal" id="impact">
+  <div class="wrap trust-grid">
+    <div class="trust-stat"><span class="stat-num" data-count="200">0</span><span class="stat-label">Weavers &amp; masters in the pilot</span></div>
+    <div class="trust-stat"><span class="stat-num" data-count="124">0</span><span class="stat-label">Given individualized support</span></div>
+    <div class="trust-stat"><span class="stat-num" data-count="50">0</span><span class="stat-label">Regional partners trained</span></div>
+    <div class="trust-stat"><span class="stat-num" data-count="5">0</span><span class="stat-label">Regions of Azerbaijan reached</span></div>
+  </div>
+</section>
+
+<!-- Problem & heritage -->
+<section class="section" id="problem" style="position:relative; overflow:hidden;">
+  <img class="buta-art" src="images/buta-gold.webp" alt="" width="200" style="bottom:-40px; left:-50px; opacity:0.09; transform:rotate(15deg);" aria-hidden="true">
+  <div class="wrap two-col" style="position:relative; z-index:1;">
+    <div class="reveal">
+      <p class="eyebrow">Background &amp; problem</p>
+      <h2>A heritage craft, carried on strained hands.</h2>
+      <p>Azerbaijani carpet weaving is inscribed on UNESCO's Representative List of the Intangible Cultural Heritage of Humanity, and remains a family-based livelihood for women across rural regions. The craft demands years of repetitive knotting, cutting and sustained wrist positioning.</p>
+      <p>Early symptoms — numbness, tingling, fatigue — are easy to dismiss as "just tired hands." Left unaddressed, they can progress toward carpal-tunnel-type dysfunction and a lasting loss of grip strength and fine motor control. Outside major cities, specialist follow-up means costly, time-consuming travel, so early symptoms are often normalized until function is already impaired.</p>
+      <ul class="point-list">
+        <li><svg class="icon" width="18" height="18"><use href="#i-map"/></svg> Specialist care concentrated in cities, far from weaving villages</li>
+        <li><svg class="icon" width="18" height="18"><use href="#i-heart"/></svg> Early strain signs routinely normalized, not assessed</li>
+        <li><svg class="icon" width="18" height="18"><use href="#i-hand"/></svg> Progressive risk to grip strength and fine motor control</li>
+      </ul>
+    </div>
+    <figure class="photo-card reveal motif-corners" style="aspect-ratio:5/4;">
+      <img src="images/weaver-loom.jpg" alt="A carpet weaver at the loom, with the ReHand Loom team fitting the sensor glove and reviewing live readings">
+    </figure>
+  </div>
+</section>
+
+<!-- Mission & Vision -->
+<section class="section band-alt" style="position:relative; overflow:hidden;">
+  <img class="buta-art" src="images/buta-maroon.webp" alt="" width="230" style="top:-50px; right:-60px; opacity:0.09; transform:rotate(-20deg);" aria-hidden="true">
+  <div class="wrap" style="position:relative; z-index:1;">
+    <div class="section-head center reveal">
+      <p class="eyebrow center">Research question</p>
+      <h2>Can a low-cost sensor glove turn everyday hand movement into a session profile a specialist can act on — remotely?</h2>
+    </div>
+    <div class="card-grid two mv-cards">
+      <div class="card mv-card border-maroon reveal">
+        <h3><svg class="icon" width="20" height="20"><use href="#i-flag"/></svg> Mission</h3>
+        <p>To make early hand rehabilitation more accessible, affordable and data-driven for underserved rural communities in Azerbaijan.</p>
+      </div>
+      <div class="card mv-card border-gold reveal">
+        <h3><svg class="icon" width="20" height="20" style="color:var(--gold);"><use href="#i-chart"/></svg> Vision</h3>
+        <p>A scalable assistive-health technology system that helps prevent minor hand symptoms from becoming permanent functional problems — complementing, never replacing, in-person professional care.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="section" id="how-it-works">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <p class="eyebrow center">Operating principle</p>
+      <h2>A closed loop: sense, interpret, guide, track, review, adjust.</h2>
+    </div>
+    <div class="steps-flow reveal">
+      <div class="step-card"><span class="step-num">01</span><h3>Calibrate</h3><p>Each weaver's comfortable baseline is recorded — open hand, fist, neutral wrist.</p></div>
+      <div class="step-card"><span class="step-num">02</span><h3>Capture</h3><p>Flexion, grip pressure and wrist motion are sampled at a fixed rate during weaving or exercise.</p></div>
+      <div class="step-card"><span class="step-num">03</span><h3>Process</h3><p>Signals are filtered, normalised against the calibration and reduced to clinical features.</p></div>
+      <div class="step-card"><span class="step-num">04</span><h3>Review</h3><p>A specialist examines trends and flagged patterns remotely — never raw signals.</p></div>
+      <div class="step-card"><span class="step-num">05</span><h3>Guide</h3><p>Advice and adjusted exercises return to the weaver through local follow-up.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Technology -->
+<section class="section band-alt" id="technology" style="position:relative; overflow:hidden;">
+  <img class="buta-art" src="images/buta-gold.webp" alt="" width="240" style="bottom:-55px; right:-55px; opacity:0.09; transform:rotate(200deg);" aria-hidden="true">
+  <div class="wrap" style="position:relative; z-index:1;">
+    <div class="section-head reveal">
+      <p class="eyebrow">Proposed system</p>
+      <h2>A glove, a microcontroller, and an app that speaks Azerbaijani first.</h2>
+      <p class="section-sub">Two flex sensors track finger bend and range, an MPU6050 IMU reads wrist angle and motion, and a thin-film pressure sensor proxies grip. An ESP32 buffers each session and streams it over Bluetooth LE to an offline-first mobile app with guided exercises, progress tracking and a daily symptom diary.</p>
+    </div>
+    <div class="card-grid four reveal">
+      <div class="card icon-card">
+        <div class="icon-plate"><svg class="icon" width="24" height="24"><use href="#i-hand"/></svg></div>
+        <h4>Sensing</h4>
+        <p>2 flex sensors (10 kΩ dividers, scalable to 5), MPU6050 IMU, thin-film pressure sensor.</p>
+      </div>
+      <div class="card icon-card">
+        <div class="icon-plate"><svg class="icon" width="24" height="24"><use href="#i-cpu"/></svg></div>
+        <h4>Processing</h4>
+        <p>ESP32, Bluetooth LE, on-device offline buffering for unreliable connectivity.</p>
+      </div>
+      <div class="card icon-card">
+        <div class="icon-plate"><svg class="icon" width="24" height="24"><use href="#i-battery"/></svg></div>
+        <h4>Power</h4>
+        <p>USB power bank in the current prototype; on-board battery planned.</p>
+      </div>
+      <div class="card icon-card">
+        <div class="icon-plate"><svg class="icon" width="24" height="24"><use href="#i-app"/></svg></div>
+        <h4>Software</h4>
+        <p>Flutter application, offline-first, Azerbaijani-first with guided routines.</p>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top:64px; align-items:flex-start;">
+      <div class="reveal">
+        <h3 style="margin-bottom:20px;">Device specification</h3>
+        <table class="spec-table">
+          <tr><td>Sensing</td><td>2 flex sensors (10 kΩ dividers, scalable to 5), MPU6050 IMU, thin-film pressure sensor</td></tr>
+          <tr><td>Processing</td><td>ESP32, Bluetooth LE, on-device offline buffering</td></tr>
+          <tr><td>Power</td><td>USB power bank (current prototype); on-board battery planned</td></tr>
+          <tr><td>Software</td><td>Flutter application, offline-first, Azerbaijani / Russian</td></tr>
+        </table>
+      </div>
+      <figure class="photo-card reveal motif-corners" style="aspect-ratio:4/3;">
+        <div class="ph-fill" data-slot="circuit-schematic"><span>Fig. 1 — Circuit schematic (KiCad): flex-sensor voltage dividers, IMU and ESP32 module</span></div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- Validation & methodology -->
+<section class="section">
+  <div class="wrap two-col">
+    <div class="reveal">
+      <p class="eyebrow">Validation strategy</p>
+      <h2>Built with weavers, checked against their movements.</h2>
+      <ul class="validation-list">
+        <li><div><h4>Bench calibration</h4><p>Sensor range, drift and repeatability measured before any human trial.</p></div></li>
+        <li><div><h4>Controlled movements</h4><p>Known motions compared against recorded signals.</p></div></li>
+        <li><div><h4>Wearability &amp; usability</h4><p>Comfort, fit and calibration time evaluated with real weavers.</p></div></li>
+        <li><div><h4>Specialist co-design</h4><p>Outputs, thresholds and risk flags refined with rehabilitation professionals.</p></div></li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <p class="eyebrow">Pilot study protocol</p>
+      <h2 style="font-size:clamp(22px,2.8vw,32px);">15–25 weavers · 6–8 weeks · 2–3 villages</h2>
+      <p>Weekly records combine exercise adherence, symptom self-reports and sensor summaries. Only anonymised, aggregate data are exported — progress is always measured against each weaver's own baseline, from a recorded <span class="mono">baseline</span> through a <span class="mono">week 4</span> midpoint review to a <span class="mono">week 8</span> post-assessment.</p>
+      <p>Requirements were informed by occupational-therapy consultation and WHO assistive-technology guidance. Development runs in four phases — research &amp; requirements, hardware prototype, app &amp; data layer, and pilot &amp; iteration — with the wearable assembly and bench calibration currently in progress.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="section band-alt">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <p class="eyebrow center">In the field</p>
+      <h2>At the Azerbaijan Carpet Museum, and beyond.</h2>
+      <p class="section-sub">ReHand Loom was presented at the Azerbaijan Carpet Museum, where the team fitted the prototype on a working weaver and shared the project with visitors and specialists.</p>
+    </div>
+    <div class="gallery-layout reveal">
+      <div class="gallery-grid">
+        <figure class="photo-card gallery-item"><img src="images/gallery-team.jpg" alt="The ReHand Loom team standing in front of their poster and the carpet loom"></figure>
+        <figure class="photo-card gallery-item"><img src="images/gallery-hijab.jpg" alt="A museum visitor asking the team questions about the ReHand Loom poster"></figure>
+        <figure class="photo-card gallery-item"><img src="images/gallery-elders.jpg" alt="Older visitors at the Carpet Museum learning about the ReHand Loom project"></figure>
+        <figure class="photo-card gallery-item"><img src="images/gallery-fitting.jpg" alt="Fitting the ReHand Loom sensor glove on a carpet weaver's hand"></figure>
+      </div>
+      <div class="video-frame photo-card">
+        <video src="images/field-demo-reel.mp4" controls playsinline muted preload="metadata" aria-label="Vertical video reel covering the full ReHand Loom project"></video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="section" id="team" style="position:relative; overflow:hidden;">
+  <img class="buta-art" src="images/buta-maroon.webp" alt="" width="210" style="top:-45px; left:2%; opacity:0.08; transform:rotate(-15deg);" aria-hidden="true">
+  <div class="wrap" style="position:relative; z-index:1;">
+    <div class="section-head center reveal">
+      <p class="eyebrow center">Team</p>
+      <h2>Three disciplines, one glove.</h2>
+    </div>
+    <div class="card-grid three reveal">
+      <div class="card team-card">
+        <div class="team-emblem" aria-hidden="true"><svg><use href="#i-buta"/></svg></div>
+        <h3>Youssef El Haroun</h3>
+        <span class="team-role">Hardware &amp; Embedded Systems</span>
+        <p>Co-founder, leading human-centered engineering and embedded systems. Translated observations of weavers' work into measurable engineering requirements, and owns the wearable's architecture, sensor integration, calibration and iterative redesign.</p>
+      </div>
+      <div class="card team-card">
+        <div class="team-emblem" aria-hidden="true"><svg style="transform:rotate(180deg);"><use href="#i-buta"/></svg></div>
+        <h3>Mikayil Ahmadbayli</h3>
+        <span class="team-role">Biomechanics &amp; Rehabilitation</span>
+        <p>Co-founder, leading bioengineering and applied biomechanics. Chose the physiologically meaningful parameters, shaped the testing protocol, and connects the prototype's technical output to ergonomics, strain prevention and specialist usefulness.</p>
+      </div>
+      <div class="card team-card">
+        <div class="team-emblem" aria-hidden="true"><svg><use href="#i-buta"/></svg></div>
+        <h3>Ilyas Taghiyev</h3>
+        <span class="team-role">Digital Systems &amp; Data</span>
+        <p>Co-founder, leading data analysis and the digital platform. Built the structure that turns raw sensor readings into readable session reports, enabling trend comparison, pattern detection and remote review by specialists.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Recognition -->
+<section class="section band-alt" id="recognition">
+  <div class="wrap narrow">
+    <div class="section-head center reveal">
+      <p class="eyebrow center">Recognition &amp; press</p>
+      <h2>Recognized at the Azerbaijan Carpet Museum, and by the Ministry of Culture.</h2>
+      <p class="section-sub">ReHand Loom was invited to present at the Azerbaijan Carpet Museum, where the team demonstrated the prototype live on a working weaver for museum staff, specialists and visitors. The impact that followed — reaching weavers, regional partners and specialists well beyond that one demonstration — is documented in the Ministry of Culture's official Letter of Appreciation below.</p>
+    </div>
+
+    <div class="card-grid two reveal" style="margin-bottom:32px;">
+      <div class="card icon-card">
+        <div class="icon-plate"><svg class="icon" width="24" height="24"><use href="#i-award"/></svg></div>
+        <h4>Azerbaijan Carpet Museum</h4>
+        <p>Hosted the presentation and live prototype demonstration, 2026.</p>
+      </div>
+      <div class="card icon-card">
+        <div class="icon-plate"><svg class="icon" width="24" height="24"><use href="#i-ministry"/></svg></div>
+        <h4>Ministry of Culture, Republic of Azerbaijan</h4>
+        <p>Issued an official Letter of Appreciation citing the pilot's measured impact.</p>
+      </div>
+    </div>
+
+    <div class="recognition-panel reveal motif-corners">
+      <img class="buta-art" src="images/buta-maroon.webp" alt="" width="170" style="bottom:-30px; right:-30px; opacity:0.08;" aria-hidden="true">
+      <div style="position:relative; z-index:1;">
+        <p class="recognition-quote">"The team built ReHand Loom not as a standalone demonstration prototype, but as a full model of interaction between the weaver, a regional coordinator, and a specialist — turning sensor and movement data into a structured report for every session."</p>
+        <p style="font-size:14.5px;">During the expanded pilot stage, the project engaged 200 carpet weavers and traditional-craft masters. Specialist reports were reviewed by 7 rehabilitation, biomechanics and ergonomics professionals, and 124 of the 200 participants received individualized guidance on workflow ergonomics, load distribution and further professional consultation.</p>
+        <div class="recognition-sig">
+          <span>Letter of Appreciation, 2026 — <strong>Ministry of Culture, Republic of Azerbaijan</strong></span>
+          <span>Signed: Adil Kerimli, Minister of Culture</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head center reveal" style="margin-top:56px; margin-bottom:24px;">
+      <p class="eyebrow center">Coming soon</p>
+      <h3 style="font-family:var(--font-head);">More coverage from the Museum, on its way.</h3>
+    </div>
+    <div class="card-grid two reveal">
+      <div class="card icon-card">
+        <div class="icon-plate"><svg class="icon" width="24" height="24"><use href="#i-play"/></svg></div>
+        <h4>Museum Instagram reel</h4>
+        <p data-slot="instagram-link">A reel covering the demonstration, set to be posted on the Azerbaijan Carpet Museum's Instagram.</p>
+      </div>
+      <div class="card icon-card">
+        <div class="icon-plate"><svg class="icon" width="24" height="24"><use href="#i-doc"/></svg></div>
+        <h4>Museum website feature</h4>
+        <p data-slot="museum-website-link">A feature post on the Azerbaijan Carpet Museum's official website.</p>
+      </div>
+    </div>
+
+    <div class="card-grid two reveal" style="margin-top:32px;">
+      <div class="impact-card card">
+        <span class="impact-num">50</span>
+        <h4>Regional rollout trained</h4>
+        <p>Culture-institution staff, museum staff and local coordinators across 5 regions of Azerbaijan, trained in device setup, calibration, running a session and secure anonymised data transfer.</p>
+      </div>
+      <div class="impact-card card">
+        <span class="impact-num">8</span>
+        <h4>Independent sessions</h4>
+        <p>Standardized sessions run in 3 regions entirely by trained regional partners, without the project team present — proof the model can operate at a distance.</p>
+      </div>
+      <div class="impact-card card">
+        <span class="impact-num">6</span>
+        <h4>Co-design iterations</h4>
+        <p>Design cycles completed from field observation, weaver feedback and specialist consultation.</p>
+      </div>
+      <div class="impact-card card">
+        <span class="impact-num">124/200</span>
+        <h4>Individualized support</h4>
+        <p>Participants who received guidance built directly from their structured digital session reports.</p>
+      </div>
+    </div>
+
+    <p class="download-item reveal" style="margin-top:28px;"><svg class="icon" width="18" height="18"><use href="#i-doc"/></svg> Ministry of Culture letter of appreciation — available on request</p>
+  </div>
+</section>
+
+<!-- Ethics -->
+<section class="section" id="ethics">
+  <div class="wrap narrow" style="text-align:center;">
+    <div class="section-head center reveal">
+      <p class="eyebrow center">Data protection &amp; ethics</p>
+      <h2>A support tool, never a diagnosis.</h2>
+      <p class="section-sub">Participation is voluntary and based on informed consent. Sensor data are pseudonymised, and only aggregate, anonymised summaries are exported for research. Automated analysis supports interpretation, while trained specialists retain final responsibility for every recommendation.</p>
+    </div>
+    <p class="disclaimer-band reveal"><svg class="icon" width="16" height="16"><use href="#i-lock"/></svg> ReHand Loom extends access to monitoring and specialist review — it does not replace professional assessment.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <img class="buta-art" src="images/buta-gold.webp" alt="" width="260" style="top:40px; right:-50px; opacity:0.1;" aria-hidden="true">
+  <div class="carpet-divider reveal" aria-hidden="true" style="padding:8px 0;">
+    <div class="motif-band gold"></div>
+    <div class="buta-divider on-dark">
+      <svg class="icon"><use href="#i-buta"/></svg><svg class="icon icon-star"><use href="#i-star8"/></svg><svg class="icon"><use href="#i-buta"/></svg><svg class="icon icon-star"><use href="#i-star8"/></svg><svg class="icon"><use href="#i-buta"/></svg><svg class="icon icon-star"><use href="#i-star8"/></svg><svg class="icon"><use href="#i-buta"/></svg>
+    </div>
+    <div class="motif-band gold"></div>
+  </div>
+  <div class="wrap footer-cta">
+    <p class="eyebrow on-dark center">Significance for heritage &amp; community</p>
+    <h2>Preserving carpet weaving means caring for the hands that keep it alive.</h2>
+    <p style="max-width:640px; margin:0 auto 28px;">For the artisans of today, their communities, and the visitors who come to admire their work.</p>
+    <div class="hero-ctas center">
+      <a href="mailto:yousefelharoun512@gmail.com?subject=ReHand%20Loom%20inquiry" class="btn btn-primary">Get in Touch</a>
+      <a href="#recognition" class="btn btn-ghost">Read the Recognition</a>
+    </div>
+  </div>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a href="#top" class="wordmark on-dark"><span class="motif-star" aria-hidden="true" style="background:var(--gold-bright);"></span>ReHand <span>Loom</span></a>
+      <p>A wearable sensor glove for monitoring occupational hand strain and supporting remote rehabilitation of Azerbaijani carpet weavers. Presented at the Azerbaijan Carpet Museum, 2026.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Project</h4>
+      <a href="#impact">Impact</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#technology">Technology</a>
+    </div>
+    <div class="footer-col">
+      <h4>Team</h4>
+      <a href="#team">Youssef El Haroun</a>
+      <a href="#team">Mikayil Ahmadbayli</a>
+      <a href="#team">Ilyas Taghiyev</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:yousefelharoun512@gmail.com" class="footer-email">yousefelharoun512@gmail.com</a>
+      <a href="#recognition">Ministry Recognition</a>
+    </div>
+  </div>
+  <div class="footer-bottom wrap">
+    <span>© 2026 ReHand Loom. Baku, Azerbaijan.</span>
+    <span>Complementing, not replacing, in-person professional care.</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
